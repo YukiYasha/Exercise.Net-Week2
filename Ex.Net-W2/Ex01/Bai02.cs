@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -105,6 +106,8 @@ namespace Ex01
                 sw.WriteLine("Tổng Tiền:\t\t " + txtTotal.Text);
                 MessageBox.Show("Đã xuất hóa đơn HoaDon.txt!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 sw.Close();
+
+                Process.Start("HoaDon.txt");
             }
         }
 

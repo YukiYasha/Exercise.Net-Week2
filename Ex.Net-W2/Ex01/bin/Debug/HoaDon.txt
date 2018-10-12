@@ -1,5 +1,5 @@
-Tên khách hàng		 ádsad
-Cạo vôi			 $100.000
+Tên khách hàng		 Hùng
+Tẩy Trắng		 $1.200.000
 Chụp Hình Răng		 $200.000
-Trám Răng		 $80.000 * 4
-Tổng Tiền:		 $620000
+Trám Răng		 $80.000 * 2
+Tổng Tiền:		 $1560000
