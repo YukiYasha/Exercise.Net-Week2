@@ -12,17 +12,57 @@ namespace Ex01
 {
     public partial class Bai01 : Form
     {
-        int Day = 0, Month = 0, Year = 0;
+        int Day = 0, Month = 0, Year = 0;       
+
         public Bai01()
         {            
             InitializeComponent();
-            LoadCb();            
+            Load_cbo();
+        }
+       
+        private void Load_cbo()
+        {
+            for (int i = 2100; i > 1900; i--)
+                cboNam.Items.Add(i);
+            for (int i = 12; i > 0; i--)
+                cboThang.Items.Add(i);
+            for (int i = 31; i > 0; i--)
+                cboNgay.Items.Add(i);
+
+            Day = int.Parse(cboNgay.Text);
+            Month = int.Parse(cboThang.Text);
+            Year = int.Parse(cboNam.Text);
         }
 
-        private void LoadCb()
+        private void Update_cboNgay()
         {
-            //Load Ngày Tháng Năm vào cb tương ứng
-            
+            cboNgay.Items.Clear();
+
+            if (Month == 1 || Month == 3 || Month == 5 || Month == 7 || Month == 8 || Month == 10 || Month == 12)
+            {
+                for (int i = 31; i > 0; i--)
+                    cboNgay.Items.Add(i);
+            }
+            else
+            if (Month == 4 || Month == 6 || Month == 9 || Month == 11)
+            {
+                for (int i = 30; i > 0; i--)
+                    cboNgay.Items.Add(i);
+            }
+            else            
+            if (Month == 2)
+            {
+                if (((Year % 4) == 0 && (Year % 100) == 0 && (Year % 400) == 0) || ((Year % 4) == 0 && (Year % 100) != 0))
+                {
+                    for (int i = 29; i > 0; i--)
+                        cboNgay.Items.Add(i);
+                }
+                else
+                {
+                    for (int i = 28; i > 0; i--)
+                        cboNgay.Items.Add(i);
+                }
+            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -37,42 +77,52 @@ namespace Ex01
             lblKQ.Text = "Hôm đó là ngày ";
         }
 
-        private void cboNam_SelectedValueChanged(object sender, EventArgs e)
+        private void cboNam_Validated(object sender, EventArgs e)
         {
-            if (cboNam.Text == "")
-                return;
-            Year = int.Parse(cboNam.Text);
-
-            if (Month == 2)
+            try
             {
-                if (((Year % 4) == 0 && (Year % 100) == 0 && (Year % 400) == 0) || ((Year % 4) == 0 && (Year % 100) != 0))
-                {
-                    //danh sách ngày từ 1-29
-                }
-                else
-                {
-                    //danh sách ngày từ 1-28
-                }
+                Year = int.Parse(cboNam.Text);
             }
+            catch (Exception)
+            {
+                cboNam.Text = DateTime.Now.Year.ToString();
+            }
+
+            Year = int.Parse(cboNam.Text);
+            cboNgay_Validated(sender, e);
         }
 
-        private void cboThang_SelectedValueChanged(object sender, EventArgs e)
+        private void cboThang_Validated(object sender, EventArgs e)
         {
-            if (cboThang.Text == "")
-                return;
-            Month = int.Parse(cboThang.Text);
+            try
+            {
+                if (int.Parse(cboThang.Text) < 1 || int.Parse(cboThang.Text) > 12)
+                    cboThang.Text = DateTime.Now.Month.ToString();
+            }
+            catch (Exception)
+            {
+                cboThang.Text = DateTime.Now.Month.ToString();
+            }
+            
+            Month = int.Parse(cboThang.Text);        
+            cboNgay_Validated(sender, e);
+        }
 
-            if (Month == 1 || Month == 3 || Month == 5 || Month == 7 || Month == 8 || Month == 10 || Month == 12)
+        private void cboNgay_Validated(object sender, EventArgs e)
+        {
+            try
             {
-                //danh sách ngày từ 1-31
+                Update_cboNgay();
+
+                if (int.Parse(cboNgay.Text) < 1 || 
+                    int.Parse(cboNgay.Text) > (int) cboNgay.Items[0])
+
+                    cboNgay.Text = DateTime.Now.Day.ToString();
             }
-            else
-            if (Month == 4 || Month == 6 || Month == 9 || Month == 11)
+            catch (Exception)
             {
-                //danh sách ngày từ 1-30
+                cboNgay.Text = DateTime.Now.Day.ToString();
             }
-            else
-                cboNam_SelectedValueChanged(sender, e);
         }
 
         private void btnTinhThu_Click(object sender, EventArgs e)
@@ -83,6 +133,10 @@ namespace Ex01
             }
             else
             {
+                Year = int.Parse(cboNam.Text);
+                Month = int.Parse(cboThang.Text);
+                Day = int.Parse(cboNgay.Text);
+
                 DateTime date = new DateTime(Year, Month, Day);
                 lblKQ.Text += TranslateDay((date.DayOfWeek).ToString());
                 lblKQ.Visible = true;

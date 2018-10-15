@@ -96,37 +96,38 @@
             // cboNgay
             // 
             this.cboNgay.DropDownHeight = 68;
-            this.cboNgay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNgay.FormattingEnabled = true;
             this.cboNgay.IntegralHeight = false;
             this.cboNgay.Location = new System.Drawing.Point(79, 51);
             this.cboNgay.Name = "cboNgay";
             this.cboNgay.Size = new System.Drawing.Size(121, 21);
             this.cboNgay.TabIndex = 5;
+            this.cboNgay.Text = "1";
+            this.cboNgay.Validated += new System.EventHandler(this.cboNgay_Validated);
             // 
             // cboThang
             // 
             this.cboThang.DropDownHeight = 68;
-            this.cboThang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboThang.FormattingEnabled = true;
             this.cboThang.IntegralHeight = false;
             this.cboThang.Location = new System.Drawing.Point(79, 87);
             this.cboThang.Name = "cboThang";
             this.cboThang.Size = new System.Drawing.Size(121, 21);
             this.cboThang.TabIndex = 6;
-            this.cboThang.SelectedValueChanged += new System.EventHandler(this.cboThang_SelectedValueChanged);
+            this.cboThang.Text = "1";
+            this.cboThang.Validated += new System.EventHandler(this.cboThang_Validated);
             // 
             // cboNam
             // 
-            this.cboNam.DropDownHeight = 68;
-            this.cboNam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNam.DropDownHeight = 100;
             this.cboNam.FormattingEnabled = true;
             this.cboNam.IntegralHeight = false;
             this.cboNam.Location = new System.Drawing.Point(79, 123);
             this.cboNam.Name = "cboNam";
             this.cboNam.Size = new System.Drawing.Size(121, 21);
             this.cboNam.TabIndex = 7;
-            this.cboNam.SelectedValueChanged += new System.EventHandler(this.cboNam_SelectedValueChanged);
+            this.cboNam.Text = "2018";
+            this.cboNam.Validated += new System.EventHandler(this.cboNam_Validated);
             // 
             // btnTinhThu
             // 
